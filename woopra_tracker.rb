@@ -144,7 +144,12 @@ module WoopraRailsSDK
 				url = url[0..-1]
 			end
 			http = Net::HTTP.new(base_url)
-			req = Net::HTTP::Get.new(url, {'User-Agent' => @request.env['HTTP_USER_AGENT']})
+			user_agent = @request.env['HTTP_USER_AGENT']
+			if not user_agent.nil?
+				req = Net::HTTP::Get.new(url, {'User-Agent' => user_agent})
+			else
+				req = Net::HTTP::Get.new(url)
+			end
 			response = http.request(req)
 		end
 
@@ -154,7 +159,11 @@ module WoopraRailsSDK
 		end
 
 		def get_client_ip
-			return @request.env['HTTP_X_FORWARDED_FOR'] || @request.remote_ip
+			if not @request.env['HTTP_X_FORWARDED_FOR'].nil?
+				return @request.env['HTTP_X_FORWARDED_FOR'].split(",")[0].strip
+			else
+				return @request.remote_ip
+			end
 		end
 
 	end
