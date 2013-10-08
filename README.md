@@ -23,11 +23,18 @@ You can also customize all the properties of the woopra during that step by addi
 # instead of:
 woopra.config({domain: 'mybusiness.com'})
 # directly write:
-woopra.config({domain: 'mybusiness.com', idle_timeout: 15000})
+woopra.config({
+   domain: 'mybusiness.com', 
+   idle_timeout: 15000
+})
 ```
 To add custom visitor properties, you should use the identify(user_hash) function:
 ``` ruby
-woopra.identify({email: 'johndoe@mybusiness.com', name: 'John Doe', company: 'My Business'})
+woopra.identify({
+   email: 'johndoe@mybusiness.com',
+   name: 'John Doe',
+   company: 'My Business'
+})
 ```
 If you wish to identify a user without any tracking event, don't forget to push() the update to Woopra:
 ``` ruby
@@ -51,9 +58,17 @@ class StaticPagesController < ApplicationController
       woopra = WoopraTracker.new(request)
       woopra.config(config_dict).identify(user_dict).track()
       # Track a custom event through the front end...
-      woopra.track("play", {artist: 'Dave Brubeck', song: 'Take Five', genre: 'Jazz'})
+      woopra.track("play", {
+         artist: 'Dave Brubeck',
+         song: 'Take Five',
+         genre: 'Jazz'
+      })
       # ... and through the back end by passing the optional param True
-      woopra.track("signup", {company: 'My Business', username: 'johndoe', plan: 'Gold'}, true)
+      woopra.track("signup", {
+         company: 'My Business',
+         username: 'johndoe',
+         plan: 'Gold'
+      }, true)
 
       # Your code here...
       
