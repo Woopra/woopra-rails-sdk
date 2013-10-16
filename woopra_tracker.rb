@@ -1,10 +1,11 @@
-#-*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 require 'json'
 require 'net/http'
 require 'open-uri'
 
 module WoopraRailsSDK
 	class WoopraTracker
+		@@SDK_ID = "rails_sdk"
 		@@default_config = {
 			domain: "", 
 			cookie_name: "wooTracker",
@@ -126,7 +127,7 @@ module WoopraRailsSDK
 				get_params.each do |key, value|
 					url += URI::encode(key) + "=" + URI::encode(value) + "&"
 				end
-				url = url[0..-1]
+				url = url[0..-1] + "&app=" + @@SDK_ID
 			else
 				if event == nil
 					get_params["ce_name"] = "pv"
@@ -141,7 +142,7 @@ module WoopraRailsSDK
 				get_params.each do |key, value|
 					url += URI::encode(key) + "=" + URI::encode(value) + "&"
 				end
-				url = url[0..-1]
+				url = url[0..-1] + "&app=" + @@SDK_ID
 			end
 			http = Net::HTTP.new(base_url)
 			user_agent = @request.env['HTTP_USER_AGENT']
