@@ -1,6 +1,6 @@
-Track customers directly in Ruby on Rails using Woopra's Rails SDK
+Track customers directly in the Ruby on Rails Web Framework using Woopra's Rails SDK
 
-The purpose of this SDK is to allow our customers who have RoR-based servers to track their users by writing only Ruby code. Tracking directly in Rails will allow you to decide whether you want to track your users:
+The purpose of this SDK is to allow our customers who have servers running the Ruby On Rails Framework to track their users by writing only Ruby code. Tracking directly in Rails will allow you to decide whether you want to track your users:
 - through the front-end: after configuring the tracker, identifying the user, and tracking page views and events in Ruby, the SDK will generate the corresponding JavaScript code, and by passing this code to your view (examples will be shown below), you will be able to print that code in your view's header.
 - through the back-end: after configuring the tracker & identifying the user, add the optional parameter true to the methods <code>track</code> or <code>push</code>, and the Rails tracker will handle sending the data to Woopra by making HTTP Requests. By doing that, the client is never involved in the tracking process.
 
