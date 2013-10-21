@@ -21,12 +21,12 @@ module WoopraRailsSDK
 			ignore_query_url: true,
 			hide_campaign: false,
 			ip_address: "",
-			cookie_value: ""
+			cookie_value: "",
 		}
 		def initialize(request)
 			@request = request
 			@current_config = @@default_config
-			@custom_config = {}
+			@custom_config = {app: @@SDK_ID}
 			@user = {}
 			@events = []
 			@user_up_to_date = true
@@ -127,7 +127,7 @@ module WoopraRailsSDK
 				get_params.each do |key, value|
 					url += URI::encode(key) + "=" + URI::encode(value) + "&"
 				end
-				url = url[0..-1] + "&ce__w_app=" + @@SDK_ID
+				url = url[0..-1] + "&app=" + @@SDK_ID
 			else
 				if event == nil
 					get_params["ce_name"] = "pv"
@@ -142,7 +142,7 @@ module WoopraRailsSDK
 				get_params.each do |key, value|
 					url += URI::encode(key) + "=" + URI::encode(value) + "&"
 				end
-				url = url[0..-1] + "&ce__w_app=" + @@SDK_ID
+				url = url[0..-1] + "&app=" + @@SDK_ID
 			end
 			http = Net::HTTP.new(base_url)
 			user_agent = @request.env['HTTP_USER_AGENT']
