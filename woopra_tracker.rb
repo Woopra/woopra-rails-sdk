@@ -127,7 +127,7 @@ module WoopraRailsSDK
 				get_params.each do |key, value|
 					url += URI::encode(key) + "=" + URI::encode(value) + "&"
 				end
-				url = url[0..-1] + "&ce__w_app=" + @@SDK_ID
+				url = url[0..-1] + "&ce_app=" + @@SDK_ID
 			else
 				if event == nil
 					get_params["ce_name"] = "pv"
@@ -142,7 +142,7 @@ module WoopraRailsSDK
 				get_params.each do |key, value|
 					url += URI::encode(key) + "=" + URI::encode(value) + "&"
 				end
-				url = url[0..-1] + "&ce__w_app=" + @@SDK_ID
+				url = url[0..-1] + "&ce_app=" + @@SDK_ID
 			end
 			http = Net::HTTP.new(base_url)
 			user_agent = @request.env['HTTP_USER_AGENT']
