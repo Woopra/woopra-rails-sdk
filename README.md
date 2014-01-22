@@ -4,7 +4,12 @@ The purpose of this SDK is to allow our customers who have servers running the R
 - through the front-end: after configuring the tracker, identifying the user, and tracking page views and events in Ruby, the SDK will generate the corresponding JavaScript code, and by passing this code to your view (examples will be shown below), you will be able to print that code in your view's header.
 - through the back-end: after configuring the tracker & identifying the user, add the optional parameter true to the methods <code>track</code> or <code>push</code>, and the Rails tracker will handle sending the data to Woopra by making HTTP Requests. By doing that, the client is never involved in the tracking process.
 
-The first step is to setup the tracker SDK in your controller. For example, if you want to set up tracking with Woopra on your homepage, the controller should look like:
+The first step is to add the woopra_tracker gem to your Gemfile:
+``` ruby
+gem 'woopra_tracker', '1.0'
+```
+
+You can then configure the tracker SDK in your controller. For example, if you want to set up tracking with Woopra on your homepage, the controller should look like:
 ``` ruby
 # import the SDK
 require_relative '../../lib/woopra-rails-sdk/woopra_tracker'
@@ -50,7 +55,6 @@ woopra.track(true)
 ```
 You can also track custom events through the front-end or the back-end. With all the previous steps done at once, your controller should look like:
 ``` ruby
-require_relative '../../lib/woopra-rails-sdk/woopra_tracker'
 include WoopraRailsSDK
 
 class StaticPagesController < ApplicationController
