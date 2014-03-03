@@ -55,7 +55,20 @@ module WoopraRailsSDK
 			return self
 		end
 
-		def track(event_name = nil, event_data = nil, back_end_tracking = false)
+		def track(*p)
+			event_name = nil
+			event_data = nil
+			back_end_tracking = false
+			for param in p
+				case param
+				when String
+					event_name = param
+				when Hash
+					event_data = param
+				when TrueClass
+					back_end_tracking = param
+				end
+			end
 			if back_end_tracking
 				woopra_http_request(true, [event_name, event_data])
 			else
@@ -129,7 +142,7 @@ module WoopraRailsSDK
 				end
 				url = url[0..-1] + "&ce_app=" + @@SDK_ID
 			else
-				if event == nil
+				if event[0].nil?
 					get_params["ce_name"] = "pv"
 					get_params["ce_url"] = @request.url.to_s
 				else
