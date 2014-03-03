@@ -134,8 +134,10 @@ module WoopraRailsSDK
 					get_params["ce_url"] = @request.url.to_s
 				else
 					get_params["ce_name"] = event[0].to_s
-					event[1].each do |key, value|
-						get_params["ce_" + key.to_s] = value.to_s
+					if not event[1].nil?
+						event[1].each do |key, value|
+							get_params["ce_" + key.to_s] = value.to_s
+						end
 					end
 				end
 				url = "/track/ce/?"
