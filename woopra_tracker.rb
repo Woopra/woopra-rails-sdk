@@ -34,7 +34,7 @@ module WoopraRailsSDK
 			@current_config[:domain] = @request.host
 			@current_config[:cookie_domain] = @request.host
 			@current_config[:ip_address] = get_client_ip
-			@current_config[:cookie_value] = @request.cookies["cookie_name"] || random_cookie
+			@current_config[:cookie_value] = @request.cookies[@current_config[:cookie_name]] || random_cookie
 			return self
 		end
 
