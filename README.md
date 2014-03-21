@@ -6,13 +6,12 @@ The purpose of this SDK is to allow our customers who have servers running the R
 
 The first step is to add the woopra_tracker gem to your Gemfile:
 ``` ruby
-gem 'woopra_tracker', '1.0'
+gem 'woopra_tracker', '1.2'
 ```
 
 You can then configure the tracker SDK in your controller. For example, if you want to set up tracking with Woopra on your homepage, the controller should look like:
 ``` ruby
 # import the SDK
-require_relative '../../lib/woopra-rails-sdk/woopra_tracker'
 include WoopraRailsSDK
 
 class StaticPagesController < ApplicationController
