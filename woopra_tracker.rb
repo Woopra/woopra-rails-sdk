@@ -82,7 +82,7 @@ module WoopraRailsSDK
 				if back_end_tracking
 					woopra_http_request(false)
 				else
-					has_pushed = true
+					@has_pushed = true
 				end
 			end
 		end
