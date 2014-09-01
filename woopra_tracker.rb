@@ -143,10 +143,10 @@ module WoopraRailsSDK
 				url = url[0..-1] + "&ce_app=" + @@SDK_ID
 			else
 				if event[0].nil?
-					get_params["ce_name"] = "pv"
+					get_params["event"] = "pv"
 					get_params["ce_url"] = @request.url.to_s
 				else
-					get_params["ce_name"] = event[0].to_s
+					get_params["event"] = event[0].to_s
 					if not event[1].nil?
 						event[1].each do |key, value|
 							get_params["ce_" + key.to_s] = value.to_s
