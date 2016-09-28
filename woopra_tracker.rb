@@ -138,7 +138,7 @@ module WoopraRailsSDK
 			if not is_tracking
 				url = "/track/identify/?"
 				get_params.each do |key, value|
-					url += URI::encode(key) + "=" + URI::encode(value) + "&"
+					url += CGI::escape(key) + "=" + CGI::escape(value) + "&"
 				end
 				url = url[0..-1] + "&ce_app=" + @@SDK_ID
 			else
@@ -155,7 +155,7 @@ module WoopraRailsSDK
 				end
 				url = "/track/ce/?"
 				get_params.each do |key, value|
-					url += URI::encode(key) + "=" + URI::encode(value) + "&"
+					url += CGI::escape(key) + "=" + CGI::escape(value) + "&"
 				end
 				url = url[0..-1] + "&ce_app=" + @@SDK_ID
 			end
