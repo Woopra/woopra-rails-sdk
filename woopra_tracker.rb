@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 require 'json'
 require 'net/http'
-require 'open-uri'
+require 'cgi'
 
 module WoopraRailsSDK
 	class WoopraTracker
 		@@SDK_ID = "rails"
 		@@default_config = {
-			domain: "", 
+			domain: "",
 			cookie_name: "wooTracker",
 			cookie_domain: "",
 			cookie_path: "/",
@@ -44,7 +44,7 @@ module WoopraRailsSDK
 					@current_config[key] = value
 					if key != :ip_address && key != :cookie_value
 						@custom_config[key] = value
-					end	
+					end
 				end
 			end
 		end
@@ -138,7 +138,7 @@ module WoopraRailsSDK
 			if not is_tracking
 				url = "/track/identify/?"
 				get_params.each do |key, value|
-					url += URI::encode(key) + "=" + URI::encode(value) + "&"
+					url += CGI.escape(key) + "=" + CGI.escape(value) + "&"
 				end
 				url = url[0..-1] + "&ce_app=" + @@SDK_ID
 			else
@@ -155,7 +155,7 @@ module WoopraRailsSDK
 				end
 				url = "/track/ce/?"
 				get_params.each do |key, value|
-					url += URI::encode(key) + "=" + URI::encode(value) + "&"
+					url += CGI.escape(key) + "=" + CGI.escape(value) + "&"
 				end
 				url = url[0..-1] + "&ce_app=" + @@SDK_ID
 			end
